@@ -1,4 +1,4 @@
-package com.algaworks.model;
+package com.algaworks.main.model;
 
 public class Curso {
 	
