@@ -1,9 +1,24 @@
 package com.algaworks.main.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cursos")
 public class Curso {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
+	
+	@Column(name = "nome", nullable = false)
 	private String nome;
+	
+	@Column(name = "duracao", nullable = false)
 	private String duracao;
 	
 	public Curso(Integer id, String nome, String duracao) {
