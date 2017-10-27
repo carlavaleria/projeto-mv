@@ -1,11 +1,10 @@
 package com.algaworks.main.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.algaworks.main.dao.CursoDAO;
 
-@Controller
+
 public class CursoController {
 	CursoDAO dao;
 	
