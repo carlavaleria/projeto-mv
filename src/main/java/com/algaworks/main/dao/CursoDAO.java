@@ -5,6 +5,7 @@ import org.hibernate.Transaction;
 import com.algaworks.main.model.Curso;
 
 public class CursoDAO extends GenericDAO<Curso, Long>{
+	
 	public Curso listarPorId(Class<Curso> classe, String pk) throws Exception{
 		Transaction transaction = null;
 		try {
