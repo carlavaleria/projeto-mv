@@ -1,4 +1,4 @@
-package com.algaworks.main.criacao.hibernate;
+package com.algaworks.main.teste.criacao;
 
 import com.algaworks.main.sessaoHibernate.HibernateUtil;
 
