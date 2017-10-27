@@ -1,6 +1,6 @@
-package com.algaworks.main.teste.criacao;
+package com.algaworks.main.teste.criacao.hibernate;
 
-import com.algaworks.main.sessaoHibernate.HibernateUtil;
+import com.algaworks.main.sessaohibernate.HibernateUtil;
 
 public class TesteCriacao {
 	public static void main(String[] args) {

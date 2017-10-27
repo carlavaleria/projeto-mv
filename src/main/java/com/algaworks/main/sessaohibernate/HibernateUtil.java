@@ -1,4 +1,4 @@
-package com.algaworks.main.sessaoHibernate;
+package com.algaworks.main.sessaohibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
