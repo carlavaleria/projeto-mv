@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -44,18 +43,6 @@ public abstract class GenericDAO<T, I extends Serializable> {
 		}
 	}
 
-	public void alterar(T entity) {
-		Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			session.update(entity);
-			transaction.commit();
-		} catch (RuntimeException e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-		}
-	}
 
 	@SuppressWarnings("unchecked")
 	public List<T> listar(Class<T> classe) {
@@ -73,7 +60,7 @@ public abstract class GenericDAO<T, I extends Serializable> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public T listarPorId(Class<T> classe, Long pk) throws Exception {
+	public T listarPorId(Class<T> classe, Integer pk) throws Exception {
 		Transaction transaction = null;
 		try {
 			transaction = session.beginTransaction();
@@ -85,72 +72,5 @@ public abstract class GenericDAO<T, I extends Serializable> {
 			throw e;
 		}
 	}
-
-	public Long listarIdPorNome(String classe, String nome) {
-		Transaction transaction = null;
-		Long id = null;
-		try {
-			transaction = session.beginTransaction();
-			Query consulta = session.getNamedQuery(classe + ".listarIdPorNome");
-			consulta.setString("nome", nome);
-			id = (Long) consulta.uniqueResult();
-			transaction.commit();
-		} catch (RuntimeException e) {
-			throw e;
-		}
-		return id;
-	}
-	
-
-	@SuppressWarnings("unchecked")
-	public List<T> listarPorFK(String classe, Long fk, String campo) {
-		Transaction transaction = null;
-		List<T> lista = null;
-		try {
-			transaction = session.beginTransaction();
-			Query consulta = session.getNamedQuery(classe + ".listarPorFK");
-			consulta.setLong(campo, fk);
-			lista = consulta.list();
-			transaction.commit();
-		} catch (RuntimeException e) {
-			throw e;
-		}
-		return lista;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<T> listarNotNullEntidade
-		(String classe, String complemento){
-			Transaction transaction = null;
-			List<T> lista = null;
-			try{
-				transaction = session.beginTransaction();
-				Query consulta = session.getNamedQuery(classe+".listarNotNull"+complemento);
-				lista = consulta.list();
-				transaction.commit();
-			}catch(RuntimeException e){
-				throw e;
-			}
-			return lista;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<T> listarEntidadePorNome
-	(String classe,String objeto, String campo, String valor) {
-		Transaction transaction = null;
-		List<T> lista = null;
-		try{
-			transaction = session.beginTransaction();
-			Query consulta = session.createQuery("select "+objeto+" from "+classe 
-					+" "+objeto+" where " +campo
-					+ " like '"+valor+"%'");
-			System.out.println(consulta);
-			lista = consulta.list();
-			transaction.commit();
-		}catch(RuntimeException e){
-			throw e;
-		}
-		return lista;
-}
 
 }

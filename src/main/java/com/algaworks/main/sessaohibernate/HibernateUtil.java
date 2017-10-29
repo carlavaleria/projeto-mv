@@ -1,5 +1,4 @@
 package com.algaworks.main.sessaohibernate;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

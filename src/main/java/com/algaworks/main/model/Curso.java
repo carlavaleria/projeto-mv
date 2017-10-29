@@ -21,12 +21,6 @@ public class Curso {
 	@Column(name = "duracao", nullable = false)
 	private String duracao;
 	
-	public Curso(Integer id, String nome, String duracao) {
-		this.id = id;
-		this.nome = nome;
-		this.duracao = duracao;
-	}
-
 	public Integer getId() {
 		return id;
 	}
