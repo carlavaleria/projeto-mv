@@ -58,4 +58,18 @@ public class CursoResources {
 	  return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(value = "/alterarCursos/{id}/{nome}/{duracao}", method = RequestMethod.GET)
+	public ResponseEntity<?> alterar(@PathVariable("id") int id,@PathVariable("nome")String nome,
+		@PathVariable("duracao")String duracao) throws Exception {
+		Curso curso = dao.listarPorId(Curso.class, id);
+		curso.setNome(nome);
+		curso.setDuracao(duracao);
+		dao.alterar(curso);
+	 
+	  if (curso == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	  return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
+	}
 }
