@@ -20,7 +20,7 @@ import com.algaworks.main.model.Curso;
 public class CursoResources {
 	
 	CursoDAO dao = new CursoDAO();
-	@RequestMapping(value = "/adicionarCursos", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<List<Curso>> listar(@RequestBody Curso curso) {
 		dao.salvar(curso);
 		
@@ -28,14 +28,14 @@ public class CursoResources {
 	}
 	
 
-	@RequestMapping(value = "/cursos", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	  public ResponseEntity<List<Curso>> listar() {
 	    return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
 	}
 
 	
 	
-	@RequestMapping(value = "/buscarCursos/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Curso> buscar(@PathVariable("id") Integer id) throws Exception {
 	  Curso curso = dao.listarPorId(Curso.class, id);
 	 
@@ -46,7 +46,7 @@ public class CursoResources {
 	  return new ResponseEntity<Curso>(curso, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/deletarCursos/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletar(@PathVariable("id") int id) throws Exception {
 		Curso curso = dao.listarPorId(Curso.class, id);
 		dao.excluir(curso);
@@ -58,7 +58,7 @@ public class CursoResources {
 	}
 	
 	
-	@RequestMapping(value = "/alterarCursos", method = RequestMethod.PUT)
+	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	public ResponseEntity<?> alterar(@RequestBody Curso curso) throws Exception {
 		Curso curso1 = dao.listarPorId(Curso.class, curso.getId());
 		curso1.setNome(curso.getNome());
