@@ -2,12 +2,10 @@ package com.algaworks.main.dao;
 
 import java.io.Serializable;
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import com.algaworks.main.sessaohibernate.HibernateUtil;
 
 public abstract class GenericDAO<T, I extends Serializable> {
