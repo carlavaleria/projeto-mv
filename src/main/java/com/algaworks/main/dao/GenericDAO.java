@@ -2,16 +2,16 @@ package com.algaworks.main.dao;
 
 import java.io.Serializable;
 import java.util.List;
+
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import com.algaworks.main.sessaohibernate.HibernateUtil;
 
 public abstract class GenericDAO<T, I extends Serializable> {
 	Session session = HibernateUtil.getSession();
 
-	//@Transactional(propagation = Propagation.REQUIRED)
 	public T salvar(T entity) {
 		Transaction transaction = null;
 		try {
@@ -86,19 +86,4 @@ public abstract class GenericDAO<T, I extends Serializable> {
 		}
 	}
 	
-	public Long listarIdPorNome(String classe, String nome){
-		Transaction transaction = null;
-		Long id = null;
-		try{
-			transaction = session.beginTransaction();
-			Query consulta = session.getNamedQuery(classe + ".listarIdPorNome");
-			consulta.setString("nome", nome);
-			id = (Long) consulta.uniqueResult();
-			transaction.commit();
-		}catch(RuntimeException e){
-			throw e;
-		}
-		return id;
-	}
-
 }

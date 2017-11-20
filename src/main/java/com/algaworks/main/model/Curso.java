@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
+/*@NamedQueries({
+	@NamedQuery(name = "Curso.listarId", query = "select id from Curso curso where" + " id = :id")
+})*/
+
 @Entity
 @Table(name = "cursos")
 public class Curso {

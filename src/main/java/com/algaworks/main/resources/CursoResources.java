@@ -29,40 +29,10 @@ public class CursoResources {
 	
 	//CursoDAO dao = new CursoDAO();
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ResponseEntity<List<Curso>> listar(@RequestBody Curso curso) {
+	public ResponseEntity<List<Curso>> adicionar(@RequestBody Curso curso) {
 		dao.salvar(curso);
 		
 		return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
-	}
-	
-
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	  public ResponseEntity<List<Curso>> listar() {
-	    return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
-	}
-
-	
-	
-	/*@RequestMapping(value = "/buscarCursos/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Curso> buscar(@PathVariable("id") Integer id) throws Exception {
-	  Curso curso = dao.listarPorId(Curso.class, id);
-	 
-	  if (curso == null) {
-	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	  }
-	 
-	  return new ResponseEntity<Curso>(curso, HttpStatus.OK);
-	}*/
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<?> deletar(@PathVariable("id") int id) throws Exception {
-		Curso curso = dao.listarPorId(Curso.class, id);
-		dao.excluir(curso);
-	 
-	  if (curso == null) {
-	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	  }
-	  return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
 	}
 	
 	
@@ -75,4 +45,35 @@ public class CursoResources {
 		
 	  return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
 	}
+	
+	
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	  public ResponseEntity<List<Curso>> listar() {
+	    return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deletar(@PathVariable("id") int id) throws Exception {
+		Curso curso = dao.listarPorId(Curso.class, id);
+		dao.excluir(curso);
+	 
+	  if (curso == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	  return new ResponseEntity<List<Curso>>(new ArrayList<Curso>(dao.listar(Curso.class)), HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "/buscarCursos/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Curso> buscar(@PathVariable("id") Integer id) throws Exception {
+	  Curso curso = dao.listarPorId(Curso.class, id);
+	 
+	  if (curso == null) {
+	    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	  }
+	 
+	  return new ResponseEntity<Curso>(curso, HttpStatus.OK);
+	}
+	
 }
