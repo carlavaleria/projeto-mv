@@ -1,5 +1,7 @@
 package com.algaworks.main.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,18 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-/*@NamedQueries({
-	@NamedQuery(name = "Curso.listarId", query = "select id from Curso curso where" + " id = :id")
-})*/
-
 @Entity
 @Table(name = "cursos")
-public class Curso {
+public class Curso implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	
 	@Column(name = "nome", nullable = false)
 	private String nome;
@@ -26,11 +25,11 @@ public class Curso {
 	@Column(name = "duracao", nullable = false)
 	private String duracao;
 	
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
